@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import { baseUrl } from "./constants";
 
 export async function sendLoginEmail(
   email: string,
@@ -21,7 +22,7 @@ export async function sendLoginEmail(
     from: "Jane Doe <j.doe@example.com>",
     to: email,
     subject: "Login to your account",
-    html: `Login by clicking here <a href=${url}/login#token=${token}>`,
+    html: `Login by clicking <a href="${baseUrl}/login#token=${token}">HERE</a>`,
   };
   const info = await transporter.sendMail(mailOptions);
   console.log("Message sent: %s", info.messageId);

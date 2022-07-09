@@ -1,28 +1,32 @@
 import type { NextPage } from "next";
 import Head from "next/head";
-import Image from "next/image";
+import LoginForm from "../components/LoginForm";
+import { useUserContext } from "../context/user.context";
 import styles from "../styles/Home.module.css";
 import { trpc } from "../utils/trpc";
 
 const Home: NextPage = () => {
-  const { data, error, isLoading } = trpc.useQuery(["hello"]);
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  const user = useUserContext();
+  
+  if (!user) {
+    return <LoginForm />;
   }
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Create Next App</title>
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
-
-      <div className=''>{data}</div>
+    <div>
+      <div>Index {JSON.stringify(user)}</div>
+      <div></div>
     </div>
   );
 };
+
+// export async function getServerSideProps() {
+//   return {
+//     redirect: {
+//       permanent: false,
+//       destination: "/login",
+//     },
+//   };
+// }
 
 export default Home;
