@@ -17,7 +17,6 @@ import { createRouter } from "../createRouter";
 export const userRouter = createRouter()
   .mutation("register-user", {
     input: createUserSchema,
-    //   output: createUserOutputSchema,
     async resolve({ ctx, input }) {
       const { name, email } = input;
       try {
@@ -59,7 +58,6 @@ export const userRouter = createRouter()
       });
 
       //send email to user
-
       await sendLoginEmail(email, url, encode(`${otp.id}:${user.email}`));
       return true;
     },

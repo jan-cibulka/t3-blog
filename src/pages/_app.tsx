@@ -18,13 +18,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (error) {
     return <div>{error.message}</div>;
   }
-  if (!data) {
-    return <div>No data</div>;
-  }
 
   return (
     <UserContextProvider value={data}>
       <main>
+        <div>{JSON.stringify(data)}</div>
         <Component {...pageProps} />
       </main>
     </UserContextProvider>

@@ -11,7 +11,8 @@ interface CtxUser {
 }
 
 function getUserFromRequest(req: NextApiRequest) {
-  const token = req.cookies.token;
+  const token = req.cookies.jwt;
+
   if (token) {
     try {
       const user = verifyJwt<CtxUser>(token);
@@ -31,6 +32,7 @@ export function createContext({
   res: NextApiResponse;
 }) {
   const user = getUserFromRequest(req);
+  console.log(user);
   return {
     req,
     res,
