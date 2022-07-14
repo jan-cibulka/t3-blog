@@ -17,6 +17,7 @@ const Home: NextPage = () => {
     <div>
       <div>Index {JSON.stringify(user)}</div>
       <Link href='/posts/new'>Create Post</Link>
+      <Link href='/posts'>Posts</Link>
     </div>
   );
 };
